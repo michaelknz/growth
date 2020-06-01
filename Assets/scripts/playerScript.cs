@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class playerScript : MonoBehaviour
 {
-    private float speed;
-    private float jump_force;
+    public float speed;
+    public float jump_force;
     private Rigidbody2D rb;
 
     void Start()
@@ -26,7 +26,7 @@ public class playerScript : MonoBehaviour
         {
             transform.position += new Vector3(speed * Time.deltaTime * (-1), 0, 0);
         }
-        else if (Input.GetKeyDown(KeyCode.Space))
+        else if (Input.GetKeyDown(KeyCode.W))
         {
             rb.AddForce(new Vector2(0, jump_force));
         }
