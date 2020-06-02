@@ -10,8 +10,6 @@ public class playerScript : MonoBehaviour
 
     void Start()
     {
-        speed = 5.0f;
-        jump_force = 500.0f;
         rb = GetComponent<Rigidbody2D>();
     }
 
