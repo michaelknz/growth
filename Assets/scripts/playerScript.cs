@@ -20,11 +20,11 @@ public class playerScript : MonoBehaviour
         {
             transform.position += new Vector3(speed * Time.deltaTime, 0, 0);
         }
-        else if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.A))
         {
             transform.position += new Vector3(speed * Time.deltaTime * (-1), 0, 0);
         }
-        else if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.W))
         {
             rb.AddForce(new Vector2(0, jump_force));
         }
