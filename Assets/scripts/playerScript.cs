@@ -11,13 +11,13 @@ public class playerScript : MonoBehaviour
     public float speed_del;
     private bool is_jump;
     public float max_speed;
-    public float radius_del;
+    private Vector3 dir;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-        rb.velocity = new Vector2(0,0);
+        dir = new Vector3(0, 0, 0);
         is_jump = false;
     }
 
@@ -26,11 +26,11 @@ public class playerScript : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.D) && (!is_jump))
         {
-            rb.velocity += new Vector2(Mathf.Min(speed,max_speed-rb.velocity.x), 0);
+            dir += new Vector3(Mathf.Min(speed,max_speed-rb.velocity.x), 0, 0);
         }
         if (Input.GetKey(KeyCode.A) && (!is_jump))
         {
-            rb.velocity += new Vector2(Mathf.Max(-speed,-max_speed-rb.velocity.x), 0);
+            dir += new Vector3(Mathf.Max(-speed,-max_speed-rb.velocity.x), 0, 0);
         }
         if (Input.GetKeyDown(KeyCode.W) && (!is_jump))
         {
@@ -40,6 +40,19 @@ public class playerScript : MonoBehaviour
         if (Check_Gnd())
         {
             is_jump = false;
+        }
+
+        transform.position += dir * Time.deltaTime;
+        if (!is_jump)
+        {
+            if (dir.x < 0)
+            {
+                dir -= new Vector3(Mathf.Max(-speed_del, dir.x), 0, 0);
+            }
+            else
+            {
+                dir -= new Vector3(Mathf.Min(speed_del, dir.x), 0, 0);
+            }
         }
     }
 
