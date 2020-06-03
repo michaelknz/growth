@@ -25,6 +25,7 @@ public class playerScript : MonoBehaviour
     
     void Update()
     {
+        is_jump = !Check_Gnd();
         if (Input.GetKey(KeyCode.D) && (!is_jump))
         {
             dir += new Vector3(Mathf.Min(speed,max_speed-rb.velocity.x), 0, 0);
@@ -37,10 +38,6 @@ public class playerScript : MonoBehaviour
         {
             rb.AddForce(new Vector2(0, jump_force));
             is_jump = true;
-        }
-        if (Check_Gnd())
-        {
-            is_jump = false;
         }
 
         Debug.Log(is_jump);
@@ -65,10 +62,8 @@ public class playerScript : MonoBehaviour
     {
         BoxCollider2D collider = GetComponent<BoxCollider2D>();
         int layer = (1 << 8);
-        Ray2D ray = new Ray2D();
-        ray.origin = transform.position;
-        //ray.direction = Vector2.up;
-        Debug.DrawRay(ray.origin, new Vector2(0,0.86f), Color.red, 100.0f);
-        return Physics2D.OverlapCircle(transform.position-new Vector3(0.0f,0.65f,0f), 0.22f, layer);
+        //return Physics2D.OverlapCircle(transform.position-new Vector3(0.0f,0.65f,0f), 0.22f, layer);
+        Debug.Log(Physics2D.OverlapBox(collider.bounds.center, collider.bounds.size, 0.0f, layer));
+        return Physics2D.OverlapBox(collider.bounds.center, collider.bounds.size, 0.0f, layer);
     }
 }
