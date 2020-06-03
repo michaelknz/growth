@@ -10,6 +10,7 @@ public class CameraController : MonoBehaviour
     public float max_offset_y;
     void Start()
     {
+        transform.position = new Vector3(player.transform.position.x, player.transform.position.y, transform.position.z);
 
     }
     void LateUpdate()

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.XR;
 
 public class playerScript : MonoBehaviour
 {
@@ -42,6 +43,8 @@ public class playerScript : MonoBehaviour
             is_jump = false;
         }
 
+        Debug.Log(is_jump);
+
         transform.position += dir * Time.deltaTime;
         if (!is_jump)
         {
@@ -62,6 +65,10 @@ public class playerScript : MonoBehaviour
     {
         BoxCollider2D collider = GetComponent<BoxCollider2D>();
         int layer = (1 << 8);
-        return Physics2D.OverlapCircle(transform.position-new Vector3(0.0f,1.21f,0f), 0.45f, layer);
+        Ray2D ray = new Ray2D();
+        ray.origin = transform.position;
+        //ray.direction = Vector2.up;
+        Debug.DrawRay(ray.origin, new Vector2(0,0.86f), Color.red, 100.0f);
+        return Physics2D.OverlapCircle(transform.position-new Vector3(0.0f,0.65f,0f), 0.22f, layer);
     }
 }
