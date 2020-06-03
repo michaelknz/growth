@@ -99,7 +99,7 @@ MonoBehaviour:
   speed: 5
   jump_force: 800
   speed_del: 1
-  max_speed: 1.5
+  max_speed: 1.1
 --- !u!50 &2057022796940218714
 Rigidbody2D:
   serializedVersion: 4
