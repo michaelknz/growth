@@ -28,11 +28,11 @@ public class playerScript : MonoBehaviour
         is_jump = !Check_Gnd();
         if (Input.GetKey(KeyCode.D) && (!is_jump))
         {
-            dir += new Vector3(Mathf.Min(speed,max_speed-rb.velocity.x), 0, 0);
+            dir += new Vector3(Mathf.Min(speed,max_speed-dir.x), 0, 0);
         }
         if (Input.GetKey(KeyCode.A) && (!is_jump))
         {
-            dir += new Vector3(Mathf.Max(-speed,-max_speed-rb.velocity.x), 0, 0);
+            dir += new Vector3(Mathf.Max(-speed,-max_speed-dir.x), 0, 0);
         }
         if (Input.GetKeyDown(KeyCode.W) && (!is_jump))
         {
@@ -54,6 +54,7 @@ public class playerScript : MonoBehaviour
                 dir -= new Vector3(Mathf.Min(speed_del, dir.x), 0, 0);
             }
         }
+        Debug.Log(dir.x);
     }
 
     
